@@ -1,0 +1,35 @@
+<{if $addmessage}>
+	<{includeq file='db:system_common_form.html' form=$addmessage}>
+<{else}>
+<table>
+	<tr>
+		<th>
+			<h1><{$message_title}></h1>
+		</th>
+	</tr>
+	<tr>
+		<td class="even">
+			<{$message_actions}>
+		</td>
+	</tr>
+	<tr>
+		<td class="odd">
+			<{$message_from}><br />
+			<{$message_to}><br />
+			<{$message_subject}><br />
+			<{$message_modification_date}>
+		</td>
+	</tr>
+	<tr>
+		<td style='padding-top:5px;padding-bottom:5px;'>
+			<{$message_content}>
+		</td>
+	</tr>
+	<tr>
+		<td class="even">
+			<{$message_actions}>
+		</td>
+	</tr>
+</table>
+<{/if}>
+
