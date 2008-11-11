@@ -1,0 +1,38 @@
+<?php
+define('_CO_IMMESSAGE_MESSAGE_COMPOSE','Montar mensagem');
+define('_CO_IMMESSAGE_MESSAGE_ID','Id');
+define('_CO_IMMESSAGE_MESSAGE_ID_DSC','');
+define('_CO_IMMESSAGE_MESSAGE_TITLE','Título');
+define('_CO_IMMESSAGE_MESSAGE_TITLE_DSC','');
+define('_CO_IMMESSAGE_MESSAGE_CONTENT','Conteúdo da Mensagem');
+define('_CO_IMMESSAGE_MESSAGE_CONTENT_DSC','');
+define('_CO_IMMESSAGE_MESSAGE_FROM_UID','de');
+define('_CO_IMMESSAGE_MESSAGE_FROM_UID_DSC','');
+define('_CO_IMMESSAGE_MESSAGE_TO_UID','para');
+define('_CO_IMMESSAGE_MESSAGE_TO_UID_DSC','');
+define('_CO_IMMESSAGE_MESSAGE_STATUS','Status');
+define('_CO_IMMESSAGE_MESSAGE_STATUS_DSC','');
+define('_CO_IMMESSAGE_MESSAGE_CREATION_DATE','Data de criação');
+define('_CO_IMMESSAGE_MESSAGE_CREATION_DATE_DSC','');
+define('_CO_IMMESSAGE_MESSAGE_MODIFICATION_DATE','Data');
+define('_CO_IMMESSAGE_MESSAGE_MODIFICATION_DATE_DSC','');
+
+define('_CO_IMMESSAGE_MESSAGE_STATUS_READ','Ler');
+define('_CO_IMMESSAGE_MESSAGE_STATUS_SEND','Enviar');
+define('_CO_IMMESSAGE_MESSAGE_STATUS_SENT','Enviado');
+define('_CO_IMMESSAGE_MESSAGE_STATUS_TRASH','Lixeira');
+define('_CO_IMMESSAGE_MESSAGE_STATUS_DRAFT','Rascunho');
+define('_CO_IMMESSAGE_MESSAGE_STATUS_DELETED','Apagado');
+
+define('_CO_IMMESSAGE_MESSAGE_SEND_RESPONSE','Responder');
+define('_CO_IMMESSAGE_MESSAGE_SEND_FORWARD','Encaminhar');
+define('_CO_IMMESSAGE_MESSAGE_SEND_TO_TRASH','Enviar para Lixeira');
+
+define('_CO_IMMESSAGE_MESSAGE_CREATE','Montar mensagem');
+define('_CO_IMMESSAGE_MESSAGE_FROM','de');
+define('_CO_IMMESSAGE_MESSAGE_TO','Para');
+define('_CO_IMMESSAGE_MESSAGE_DATE','Data');
+define('_CO_IMMESSAGE_MESSAGE_SUBJECT','Assunto');
+define('_CO_IMMESSAGE_MESSAGE_SEND_TRASH_CONFIRM','Confirma que pretende enviar a mensagem para a lixeira?');
+define('_CO_IMMESSAGE_MESSAGE_SENT_TO_TRASH','Mensagem enviada para a lixeira');
+?>
