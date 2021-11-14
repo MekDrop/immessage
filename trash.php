@@ -3,14 +3,13 @@ include("header.php");
 
 include(ICMS_ROOT_PATH."/header.php");
 
-$immenu_message_handler = xoops_getModuleHandler('message');
+$immenu_message_handler = \icms_getModuleHandler('message');
 
-include_once ICMS_ROOT_PATH."/kernel/icmspersistabletable.php";
 $criteriaOr = new CriteriaCompo();
 $criteriaOr->add(new Criteria('message_status', _IMMESSAGE_STATUS_TRASH));
 $criteria = new CriteriaCompo();
 $criteria->add($criteriaOr, 'AND');
-$criteria->add(new Criteria('message_to_uid', $xoopsUser->getVar('uid')),'AND');
+$criteria->add(new Criteria('message_to_uid', \icms::$user->getVar('uid')),'AND');
 $criteria->add(new Criteria('message_show_on_inbox', 0), 'AND');
 $objectTable = new IcmsPersistableTable($immenu_message_handler, $criteria, array());
 $objectTable->isForUserSide();
@@ -29,4 +28,3 @@ $objectTable->addCustomAction('getMessageDeleteFromTrashButton');
 $objectTable->render();
 
 include(ICMS_ROOT_PATH."/footer.php");
-?>

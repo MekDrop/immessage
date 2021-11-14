@@ -1,7 +1,7 @@
 <?php
 include('header.php');
 
-$immessage_message_handler = xoops_getModuleHandler('message');
+$immessage_message_handler = \icms_getModuleHandler('message');
 
 $op = '';
 if (isset($_GET['op'])) $op = $_GET['op'];
@@ -21,10 +21,10 @@ switch($op){
 	case 'mod':
 		$xoopsOption['template_main'] = 'immessage_message.html';
 		include(ICMS_ROOT_PATH."/header.php");
-		
+
 		$postObj = $immessage_message_handler->get($message_id);
-		
-		if (!$postObj->isNew()){			
+
+		if (!$postObj->isNew()){
 			$sform = $postObj->getForm(_CO_IMMESSAGE_MESSAGE_EDIT, 'addmessage');
 			$sform->assign($xoopsTpl);
 		}else{
@@ -34,7 +34,6 @@ switch($op){
 		include(ICMS_ROOT_PATH."/footer.php");
 		break;
 	case "addmessage":
-        include_once ICMS_ROOT_PATH."/kernel/icmspersistablecontroller.php";
         $controller = new IcmsPersistableController($immessage_message_handler);
 		$controller->storeFromDefaultForm(_AM_IMMESSAGE_MESSAGE_CREATED, _AM_IMMESSAGE_MESSAGE_MODIFIED);
 		break;
@@ -53,8 +52,8 @@ switch($op){
 		$messageObj->setVar('message_id',0);
 		$messageObj->setVar('message_title',"RE: ".$messageObj->getVar('message_title'));
 		$messageObj->setVar('message_content',"[quote]".$messageObj->getVar('message_content')."[/quote]");
-		$messageObj->setVar('message_to_uid', $messageObj->getVar('message_from_uid'));			
-		$messageObj->setVar('message_from_uid', $xoopsUser->getVar('uid'));
+		$messageObj->setVar('message_to_uid', $messageObj->getVar('message_from_uid'));
+		$messageObj->setVar('message_from_uid', \icms::$user->uid);
 		$sform = $messageObj->getForm(_CO_IMMESSAGE_SEND_RESPONSE, 'addmessage');
 		$sform->assign($xoopsTpl);
 		include(ICMS_ROOT_PATH."/footer.php");
@@ -66,7 +65,7 @@ switch($op){
 		$messageObj->setVar('message_id',0);
 		$messageObj->setVar('message_title',"FWD: ".$messageObj->getVar('message_title'));
 		$messageObj->setVar('message_content',"[quote]".$messageObj->getVar('message_content')."[/quote]");
-		$messageObj->setVar('message_from_uid', $xoopsUser->getVar('uid'));			
+		$messageObj->setVar('message_from_uid', \icms::$user->uid);
 		$sform = $messageObj->getForm(_CO_IMMESSAGE_SEND_FORWARD, 'addmessage');
 		$sform->assign($xoopsTpl);
 		include(ICMS_ROOT_PATH."/footer.php");
@@ -123,4 +122,3 @@ switch($op){
 		$xoopsTpl->assign("message_modification_date",_CO_IMMESSAGE_MESSAGE_DATE.": <b>".$messageObj->getVar('message_modification_date')."</b>");
 		include(ICMS_ROOT_PATH."/footer.php");
 }
-?>

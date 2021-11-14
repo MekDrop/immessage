@@ -3,9 +3,8 @@ include("header.php");
 
 include(ICMS_ROOT_PATH."/header.php");
 
-$immenu_message_handler = xoops_getModuleHandler('message');
+$immenu_message_handler = \icms_getModuleHandler('message');
 
-include_once ICMS_ROOT_PATH."/kernel/icmspersistabletable.php";
 $criteriaOr = new CriteriaCompo();
 $criteriaOr->add(new Criteria('message_status', _IMMESSAGE_STATUS_SEND));
 $criteriaOr->add(new Criteria('message_status', _IMMESSAGE_STATUS_READ), 'OR');
@@ -13,7 +12,7 @@ $criteriaOr->add(new Criteria('message_status', _IMMESSAGE_STATUS_TRASH), 'OR');
 $criteria = new CriteriaCompo();
 $criteria->add($criteriaOr, 'AND');
 $criteria->add(new Criteria('message_show_on_sent', 1), 'AND');
-$criteria->add(new Criteria('message_from_uid', $xoopsUser->getVar('uid')),'AND');
+$criteria->add(new Criteria('message_from_uid', \icms::$user->getVar('uid')),'AND');
 $objectTable = new IcmsPersistableTable($immenu_message_handler, $criteria, array());
 $objectTable->isForUserSide();
 $objectTable->setDefaultOrder('message_modification_date');
@@ -33,4 +32,3 @@ $objectTable->addCustomAction('getMessageDeleteFromSentButton');
 $objectTable->render();
 
 include(ICMS_ROOT_PATH."/footer.php");
-?>

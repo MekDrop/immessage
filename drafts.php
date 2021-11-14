@@ -3,12 +3,11 @@ include("header.php");
 
 include(ICMS_ROOT_PATH."/header.php");
 
-$immenu_message_handler = xoops_getModuleHandler('message');
+$immenu_message_handler = \icms_getModuleHandler('message');
 
-include_once ICMS_ROOT_PATH."/kernel/icmspersistabletable.php";
 $criteria = new CriteriaCompo();
 $criteria->add(new Criteria('message_status', _IMMESSAGE_STATUS_DRAFT));
-$criteria->add(new Criteria('message_from_uid', $xoopsUser->getVar('uid')));
+$criteria->add(new Criteria('message_from_uid', \icms::$user->uid));
 $objectTable = new IcmsPersistableTable($immenu_message_handler, $criteria, array('edit'));
 $objectTable->isForUserSide();
 $objectTable->setDefaultOrder('message_modification_date');
@@ -26,4 +25,3 @@ $objectTable->addQuickSearch(array('menu_title',"menu_desc"));
 $objectTable->render();
 
 include(ICMS_ROOT_PATH."/footer.php");
-?>
