@@ -1,20 +1,21 @@
 <?php
+
+use Imponeer\Database\Criteria\CriteriaCompo;
+use ImpressCMS\Core\View\Table\Table;
+
 include("header.php");
 
 include(ICMS_ROOT_PATH."/header.php");
 
-$immenu_message_handler = xoops_getModuleHandler('message');
-
-include_once ICMS_ROOT_PATH."/kernel/icmspersistabletable.php";
+$immenu_message_handler = \icms_getModuleHandler('message');
 $criteriaOr = new CriteriaCompo();
 $criteriaOr->add(new Criteria('message_status', _IMMESSAGE_STATUS_SEND));
 $criteriaOr->add(new Criteria('message_status', _IMMESSAGE_STATUS_READ), 'OR');
 $criteria = new CriteriaCompo();
 $criteria->add($criteriaOr, 'AND');
-$criteria->add(new Criteria('message_to_uid', $xoopsUser->getVar('uid')),'AND');
+$criteria->add(new Criteria('message_to_uid', \icms::$user->uid),'AND');
 $criteria->add(new Criteria('message_show_on_inbox', 1), 'AND');
-$objectTable = new IcmsPersistableTable($immenu_message_handler, $criteria, array());
-$objectTable->isForUserSide();
+$objectTable = new Table($immenu_message_handler, $criteria, [], true);
 $objectTable->setDefaultOrder('message_modification_date');
 $objectTable->addColumn(new IcmsPersistableColumn('message_status', 'center'));
 $objectTable->addColumn(new IcmsPersistableColumn('message_from_uid', 'left'));
@@ -33,4 +34,3 @@ $objectTable->addCustomAction('getMessageTrashButton');
 $objectTable->render();
 
 include(ICMS_ROOT_PATH."/footer.php");
-?>

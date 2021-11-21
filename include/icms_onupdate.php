@@ -47,5 +47,3 @@ function xoops_module_install_immessage($module) {
 
 	return true;
 }
-
-?>

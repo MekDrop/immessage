@@ -9,15 +9,15 @@
 * @version		$Id$
 */
 
-if (!defined("ICMS_ROOT_PATH")) die("ICMS root path not defined");
+if (!defined("ICMS_ROOT_PATH")) die("ICMS root path not defined");
+
 
 /**
  * @todo to be move in icms core
  */
 function immessage_getModuleName($withLink = true, $forBreadCrumb = false, $moduleName = false) {
 	if (!$moduleName) {
-		global $xoopsModule;
-		$moduleName = $xoopsModule->getVar('dirname');
+		$moduleName = \icms::$module->getVar('dirname');
 	}
 	$icmsModule = icms_getModuleInfo($moduleName);
 	$icmsModuleConfig = icms_getModuleConfig($moduleName);
@@ -51,4 +51,3 @@ function immessage_getPreviousPage($default=false) {
 		return ICMS_URL;
 	}
 }
-?>
